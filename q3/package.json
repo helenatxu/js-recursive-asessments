@@ -1,0 +1,8 @@
+{
+  "name": "q3",
+  "description": "Solution for the third JS asessment.",
+  "author": "Helena",
+  "dependencies": {
+    "moment": "2.10.3"
+  }
+}
