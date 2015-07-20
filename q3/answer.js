@@ -37,6 +37,7 @@ var getDates = function() {
         var result = countMonths(initDate, endDate, 0);
         out.write(result + '\n');
     });
+    out.end();
 };
 
 getDates();
