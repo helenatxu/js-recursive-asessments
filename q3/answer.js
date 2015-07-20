@@ -1,8 +1,8 @@
-var fs = require('fs');
-var input = process.argv[2];
-var text = fs.readFileSync(input, 'utf8');
-var out = fs.createWriteStream('q3/output.txt', { encoding: 'utf8' });
-var moment = require('moment');
+var fs = require('fs'),
+input = process.argv[2],
+text = fs.readFileSync(input, 'utf8'),
+out = fs.createWriteStream('q3/output.txt', { encoding: 'utf8' }),
+moment = require('moment');
 
 var countMondays = function(currentMonth, currentDate, mondaysCount) {
     if (currentDate.month() == currentMonth) {
@@ -30,9 +30,9 @@ var setToFirstMonday = function(month, year) {
 
 var getDates = function() {
     text.split(/\r?\n/).forEach(function (line) {
-        var range = line.split(/\s/);
-        var initDate = setToFirstMonday(range[0],range[1]);
-        var endDate = setToFirstMonday(range[2],range[3]);
+        var range = line.split(/\s/),
+        initDate = setToFirstMonday(range[0],range[1]),
+        endDate = setToFirstMonday(range[2],range[3]);
 
         var result = countMonths(initDate, endDate, 0);
         out.write(result + '\n');
@@ -41,4 +41,3 @@ var getDates = function() {
 };
 
 getDates();
-

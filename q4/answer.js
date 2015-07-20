@@ -1,14 +1,14 @@
-var fs = require('fs');
-var input = process.argv[2];
-var text = fs.readFileSync(input, 'utf8');
-var out = fs.createWriteStream('q4/output.txt', { encoding: 'utf8' });
+var fs = require('fs'),
+input = process.argv[2],
+text = fs.readFileSync(input, 'utf8'),
+out = fs.createWriteStream('q4/output.txt', { encoding: 'utf8' });
 
 var removeDuplicates = function(arr){
     var exists = {},
     cleanedArray = [],
     item;
 
-    for(var i = 0; i < arr.length; i++){
+    for(var i = 0, j = arr.length; i < j; i++){
         item = arr[i];
         if(!exists[item]){
             cleanedArray.push(item);
