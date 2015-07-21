@@ -24,15 +24,15 @@ var countMonths = function(initDate, endDate, monthsCount) {
     return countMonths(initDate, endDate, monthsCount);
 };
 
-var setToFirstMonday = function(month, year) {
-    return moment().date(7).month(month).year(year).isoWeekday(1);
+var setToFirstSunday = function(month, year) {
+    return moment().date(1).month(month).year(year).isoWeekday(7);
 };
 
 var getDates = function() {
     text.split(/\r?\n/).forEach(function (line) {
         var range = line.split(/\s/),
-        initDate = setToFirstMonday(range[0],range[1]),
-        endDate = setToFirstMonday(range[2],range[3]);
+        initDate = setToFirstSunday(range[0],range[1]),
+        endDate = setToFirstSunday(range[2],range[3]);
 
         var result = countMonths(initDate, endDate, 0);
         out.write(result + '\n');

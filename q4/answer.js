@@ -30,7 +30,6 @@ var getRange = function() {
                 powerArray.push(Math.pow(x, y));
             }
         }
-
         var result = removeDuplicates(powerArray).length;
         out.write(result + '\n');
     });

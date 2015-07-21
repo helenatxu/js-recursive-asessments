@@ -1,11 +1,10 @@
 
-var fs = require('fs');
-var input = process.argv[2];
-var text = fs.readFileSync(input, 'utf8');
-var out = fs.createWriteStream('q2/output.txt', { encoding: 'utf8' });
+var fs = require('fs'),
+input = process.argv[2],
+text = fs.readFileSync(input, 'utf8'),
+out = fs.createWriteStream('q2/output.txt', { encoding: 'utf8' });
 
 var countChange = function(coins, m, moneyAmount) {
-    console.log('Params coins = ['+coins+'], m = '+ m+', moneyAmount = '+moneyAmount);
     // If moneyAmount is 0 then there is 1 solution (which is not to include any coin)
     if (moneyAmount === 0) {
         return 1;
@@ -29,7 +28,6 @@ var readMoney = function(coins) {
     var m = coins.length;
     text.split(/\r?\n/).forEach(function (line) {
         var moneyAmount = parseInt(line.split(/p\b/));
-        console.log('moneyAmount: ', moneyAmount);
         var change = countChange(coins, m, moneyAmount);
         out.write(change + '\n');
     });
