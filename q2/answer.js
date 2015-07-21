@@ -2,7 +2,7 @@
 var fs = require('fs'),
 input = process.argv[2],
 text = fs.readFileSync(input, 'utf8'),
-out = fs.createWriteStream('q2/output.txt', { encoding: 'utf8' });
+out = fs.createWriteStream('output.txt', { encoding: 'utf8' });
 
 var countChange = function(coins, m, moneyAmount) {
     // If moneyAmount is 0 then there is 1 solution (which is not to include any coin)

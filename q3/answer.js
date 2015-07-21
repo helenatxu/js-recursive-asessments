@@ -1,7 +1,7 @@
 var fs = require('fs'),
 input = process.argv[2],
 text = fs.readFileSync(input, 'utf8'),
-out = fs.createWriteStream('q3/output.txt', { encoding: 'utf8' }),
+out = fs.createWriteStream('output.txt', { encoding: 'utf8' }),
 moment = require('moment');
 
 var countMondays = function(currentMonth, currentDate, mondaysCount) {
