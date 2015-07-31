@@ -5,31 +5,39 @@ text = fs.readFileSync(input, 'utf8'),
 out = fs.createWriteStream('output.txt', { encoding: 'utf8' });
 
 var countChange = function(coins, m, moneyAmount) {
-    // If moneyAmount is 0 then there is 1 solution (which is not to include any coin)
-    if (moneyAmount === 0) {
-        return 1;
-    }
+    // moneyAmount + 1 rows are used as the table is built in bottom-up
+    // way using the base case 0 value case (moneyAmount = 0)
 
-    // If moneyAmount is less than 0, then 0 solution exists
-    if (moneyAmount < 0) {
-        return 0;
-    }
+    var table = new Array(moneyAmount + 1);
 
-    // If there are no coins and moneyAmount is greater than 0, then 0 solutions exist
-    if (m <=0 && moneyAmount >= 1) {
-        return 0;
-    }
+    for (var i = 0; i <= moneyAmount; ++i)
+        table[i] = new Array(m + 1);
 
-    // countChange is sum of solutions = including coins[m-1] + excluding coins[m-1]
-    return countChange(coins, m-1, moneyAmount) + countChange(coins, m, moneyAmount-coins[m-1]);
+    // Fills the table for 0 value case (moneyAmount = 0)
+    for (i = 1; i <= m; i++)
+        table[0][i] = 1;
+
+    // Fills the rest of the table entries in bottom-up way
+    for (i = 1; i <= moneyAmount; ++i) {
+        table[i][0] = 0;
+        for (var j = 1; j <= m; ++j) {
+            var value = table[i][j - 1];
+            if (coins[j - 1] <= i)
+                value += table[i - coins[j - 1]][j];
+            table[i][j] = value;
+        }
+    }
+    return table[moneyAmount][m-1];
 };
 
 var readMoney = function(coins) {
     var m = coins.length;
     text.split(/\r?\n/).forEach(function (line) {
-        var moneyAmount = parseInt(line.split(/p\b/));
-        var change = countChange(coins, m, moneyAmount);
-        out.write(change + '\n');
+        if (line) {
+            var moneyAmount = parseInt(line.split(/p\b/));
+            var change = countChange(coins, m, moneyAmount);
+            out.write(change + '\n');
+        }
     });
     out.end();
 };

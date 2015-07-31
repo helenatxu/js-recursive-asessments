@@ -23,16 +23,16 @@ I have assumed that each word is separated by an empty space and each sentence b
 
 # Assessment 2
 
-This program reads the quantities entered in pennies, removes the 'p' at the end of the quantity and returns the number of different combinations of the available coins to return the change for that quantity, in a recursive way.
-
-If the amount entered is less than 0 or the coins available are 0, then return 0 combinations.
-If the moneyAmount entered is exactly 0, then return 1 combination, which means there is one combination with no coins.
+This program reads the quantities entered in pennies, removes the 'p' at the end of the quantity and returns the number of different combinations of the available coins to return the change for that quantity.
+For this version I choosed the Dynamic Programming solution, which creates a temporary 2-dimensional array and fills it in a bottom-up way.
 
 The available coins are stored in an array.
 
-I have assumed that the quantities are always expressed in pennies, like '1p' or '250p'.
+I have assumed that the quantities are always expressed in pennies, like '1p' or '250p' and are equal or higher than 0.
 
-As a potential improvement, I would try to implement a dynamic programming solution, like constructing a temporary array table and store there the different change combinations.
+If the amount entered is 0 and the coins available are 0, then return the empty combination.
+If the moneyAmount entered is exactly 0, then return 1 combination, which means there is one combination with no coins.
+
 
 --
 
